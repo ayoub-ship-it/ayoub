@@ -2,7 +2,7 @@
 
   try {
 
-    $base = new PDO('mysql:host=localhost; dbname=ecommerce', 'root', 'p@ssF4cileDB45');
+    $base = new PDO('mysql:host=localhost; dbname=webapp2k', 'root', '');
 
   }
 

@@ -36,27 +36,25 @@ switch ($page) {
   case 'contact':
     $values = array(
       'contact' => array(
-        'name' => 'Nassim',
-        'email' => 'nassim.khirredine@gmail.com'
+        'email' => 'ayoub.khazzar@cpe.fr'
       )
     );
     echo $twig->render('contact.twig', $values);
     break;
   case 'produits':
-    // try{
-    //   $rez = $base->prepare("select * from Products;");
-    //   $rez = execute();
-    // } catch(Exception $e){
-    //   echo $e->getMessage();
-    //   die();
-    // }
-    // $produits = $rez->FetchAll(PDO::FETCH_ASSOC);
-    // $items = array();
-    // foreach($produits as $produit){
-    //   $items[] = $produit;
-    // }
-    // echo $twig->render('produits.twig', array('item' => $items)); //essayer d'afficher la liste des produits de la BDD
-    echo $twig->render('produits.twig');
+    try{
+      $stmt = $base->prepare("select * from Products;");
+      $stmt->execute();
+    } catch(Exception $e){
+      echo $e->getMessage();
+      die();
+    }
+    $items = array();
+    while($produit = $stmt->fetch()){
+      $items[] = $produit;
+    }
+    echo $twig->render('produits.twig', array('item' => $items)); //essayer d'afficher la liste des produits de la BDD
+   
     break;
   case 'panier':
     echo $twig->render('panier.twig');
